@@ -6,11 +6,11 @@
             <a href="/"><img style="width: 25%;" alt="Eco Shop" src="/resources/uploads/logo.png" /></a>
         </div>
         <div class="col-xs-4 col-sm-12 col-md-5 col-lg-4 header-search-box">
-            <form class="form-inline">
+            <form class="form-inline" action="${pageContext.request.contextPath}/search" method="post">
                 <div class="form-group input-serach">
                     <input type="text" placeholder="Search ...">
                 </div>
-                <button type="submit" class="pull-right btn-search"><i class="fa fa-search"></i></button>
+                <button type="submit" class="pull-right btn-search"><i class="fa fa-search" ></i></button>
             </form>
         </div>
 
@@ -70,9 +70,9 @@
                                 </li>
                                 <!--<li><a href="#">Promotion</a></li>-->
                                 <li><a href="/order/index">Order</a></li>
-                                <li><a href="policy-faq.html">Policy & FAQ</a></li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="contact-us.html">Contact Us</a></li>
+<%--                                <li><a href="policy-faq.html">Policy & FAQ</a></li>--%>
+<%--                                <li><a href="about-us.html">About Us</a></li>--%>
+<%--                                <li><a href="contact-us.html">Contact Us</a></li>--%>
                             </ul>
                         </div>
                         <!--/.nav-collapse -->

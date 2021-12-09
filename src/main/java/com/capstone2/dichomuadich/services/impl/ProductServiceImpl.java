@@ -6,6 +6,8 @@ import com.capstone2.dichomuadich.domain.Store;
 import com.capstone2.dichomuadich.repository.ItemsRepository;
 import com.capstone2.dichomuadich.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,12 @@ public class ProductServiceImpl implements ProductService {
     ItemsRepository itemsRepository;
 
     @Override
-    public List<Items> getListItems(Store store) {
+    public Page<Items> getListItems(Store store, Pageable pageable) {
+        return itemsRepository.findItemsByStore(store,pageable);
+    }
+
+    @Override
+    public List<Items> getListItemsByStore(Store store) {
         return itemsRepository.findItemsByStore(store);
     }
 
@@ -43,14 +50,24 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Page<Items> getItemsByStoreAndCategory(Store store, Category category,Pageable pageable) {
+        return itemsRepository.findItemsByStoreAndCategory(store, category,pageable);
+    }
+
+    @Override
     public List<Items> getItemsByStoreAndCategory(Store store, Category category) {
-        return itemsRepository.findItemsByStoreAndCategory(store, category);
+        return itemsRepository.findItemsByStoreAndCategory(store,category);
     }
 
     @Override
     public List<Items> getAll(Sort sort) {
         return itemsRepository.findAll(sort);
 
+    }
+
+    @Override
+    public List<Items> getAll() {
+        return itemsRepository.findAll();
     }
 
     @Override

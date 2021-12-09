@@ -57,7 +57,7 @@
                                     <div class="box-right">
                                         <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
                                         <ul class="product-list">
-                                            <c:forEach items="${itemsList}" var="item">
+                                            <c:forEach items="${itemsList.content}" var="item">
                                                 <li class="col-sm-4 product-item" style="width: 280px;">
 
                                                     <div class="left-block">
@@ -104,37 +104,66 @@
                     <div class="bottom-pagination">
                         <nav>
                             <ul class="pagination">
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li>
-                                    <a href="#" aria-label="Next">
-                                        <span aria-hidden="true">Next &raquo;</span>
-                                    </a>
-                                </li>
+                                <c:if test="${numberPage>0}">
+                                    <li>
+
+                                        <c:if test="${cat == null}">
+                                            <a href="${pageContext.request.contextPath}${store.storeId}?page=${itemsList.number - 1}" aria-label="Next">
+                                                <span aria-hidden="true"><< Previous</span>
+                                            </a>
+                                        </c:if>
+                                        <c:if test="${cat != null}">
+                                            <a href="${pageContext.request.contextPath}${cat.catId}?page=${itemsList.number - 1}" aria-label="Next">
+                                                <span aria-hidden="true"><< Previous</span>
+                                            </a>
+                                        </c:if>
+                                    </li>
+                                </c:if>
+                                <c:forEach varStatus="index" items="${itemSize}" var="item">
+
+                                    <c:if test="${cat == null}">
+                                        <li class="${numberPage == index.index? 'active' : null}"><a href="${pageContext.request.contextPath}${store.storeId}?page=${index.index}">${index.index+1}</a></li>
+                                    </c:if>
+                                    <c:if test="${cat != null}">
+                                        <li class="${numberPage == index.index? 'active' : null}"><a href="${pageContext.request.contextPath}${cat.catId}?page=${index.index}">${index.index+1}</a></li>
+                                    </c:if>
+                                </c:forEach>
+                                <c:if test="${numberPage<itemsList.totalPages - 1}">
+                                    <li>
+                                    <c:if test="${cat == null}">
+                                        <a href="${pageContext.request.contextPath}${store.storeId}?page=${itemsList.number + 1}" aria-label="Next">
+                                            <span aria-hidden="true">Next >></span>
+                                        </a>
+                                    </c:if>
+                                        <c:if test="${cat != null}">
+                                            <a href="${pageContext.request.contextPath}${cat.catId}?page=${itemsList.number + 1}" aria-label="Next">
+                                                <span aria-hidden="true">Next >></span>
+                                            </a>
+                                        </c:if>
+                                    </li>
+                                </c:if>
+
                             </ul>
                         </nav>
                     </div>
-                    <div class="show-product-item">
-                        <select name="">
-                            <option value="">Show 9</option>
-                            <option value="">Show 18</option>
-                            <option value="">Show 27</option>
-                            <option value="">Show 36</option>
-                        </select>
-                    </div>
-                    <div class="sort-product">
-                        <select>
-                            <option value="">Product Name</option>
-                            <option value="">Price</option>
-                        </select>
+<%--                    <div class="show-product-item">--%>
+<%--                        <select name="">--%>
+<%--                            <option value="">Show 9</option>--%>
+<%--                            <option value="">Show 18</option>--%>
+<%--                            <option value="">Show 27</option>--%>
+<%--                            <option value="">Show 36</option>--%>
+<%--                        </select>--%>
+<%--                    </div>--%>
+<%--                    <div class="sort-product">--%>
+<%--                        <select>--%>
+<%--                            <option value="">Product Name</option>--%>
+<%--                            <option value="">Price</option>--%>
+<%--                        </select>--%>
 
-                        <div class="sort-product-icon">
-                            <i class="fa fa-sort-alpha-asc"></i>
-                        </div>
-                    </div>
+<%--                        <div class="sort-product-icon">--%>
+<%--                            <i class="fa fa-sort-alpha-asc"></i>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
                 </div>
             </div>
             <!-- ./ Center colunm -->

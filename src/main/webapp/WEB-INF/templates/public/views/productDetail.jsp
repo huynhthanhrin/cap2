@@ -147,7 +147,7 @@
                             <div id="comment" class="tab-panel">
                                 <div id="addComment">
                                     <c:forEach items="${comments}" var="comment">
-                                        <div class="form-inline" style="display: flex;padding-left: 30px">
+                                      <div class="form-inline" style="display: flex;padding-left: 30px">
                                             <div class="row" style="margin-right: 10px">
                                                 <p style="font-weight: bold">${comment.user.lastName}</p>
                                             </div>
@@ -157,7 +157,6 @@
                                         </div>
                                     </c:forEach>
                                 </div>
-
                             </div>
 
                                 <div class="card p-3">

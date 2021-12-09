@@ -66,5 +66,4 @@ function confirmOrder () {
             $("#register_error_mes").show();
         }
     });
-
 }

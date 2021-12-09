@@ -42,7 +42,7 @@ public class CommonConstants {
     /**
      * TODO: Field description
      */
-    public static final String USER_ROLE = "USER_ROLE";
+    public static final String CLIENT = "CLIENT";
 
     /**
      * TODO: Field description
@@ -53,15 +53,19 @@ public class CommonConstants {
 
     public static final String DEACTIVE = "0";
 
-    public static final int CONFIRM_STATUS = 0;
+    public static final int WARD_CONFIRM_STATUS = 0;
 
-    public static final int PREPARING_STATUS = 1;
+    public static final int STORE_CONFIRM_STATUS = 1;
 
-    public static final int DELIVERY_STATUS = 2;
+    public static final int STORE_PREPARE_STATUS = 2;
 
-    public static final int SUCCESSFULLY_STATUS = 3;
+    public static final int DELIVERY_STATUS = 3;
 
-    public static final int CANCELED_STATUS = 4;
+    public static final int SUCCESSFULLY_STATUS = 5;
+
+    public static final int WARD_RECEIVE_ORDER = 4;
+
+    public static final int CANCELED_STATUS = 6;
 
 }
 

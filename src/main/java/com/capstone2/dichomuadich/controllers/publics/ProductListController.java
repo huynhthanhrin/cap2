@@ -9,15 +9,17 @@ import com.capstone2.dichomuadich.services.CommentService;
 import com.capstone2.dichomuadich.services.ProductService;
 import com.capstone2.dichomuadich.services.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -48,17 +50,36 @@ public class ProductListController {
     }
 
     @GetMapping({"/product/{sid}", "/product/{sid}/{cid}"})
-    public String loadProductByStore(@PathVariable Integer sid, @PathVariable(name = "cid", required = false) Integer cid, Model model)
+    public String loadProductByStore(@PathVariable Integer sid, @PathVariable(name = "cid", required = false) Integer cid, Model model,
+                                     @RequestParam("page") Optional<Integer> page)
     {
         Store store = storeService.findStoreByStoreId(sid);
         List<Category> categoryList = categoryService.getListCategoryByStore(store);
-        List<Items> itemsList = new ArrayList<>();
-        itemsList = cid == null ? productService.getListItems(store) : productService.getItemsByStoreAndCategory(store, categoryService.getCategoryById(cid));
+        Pageable pageable = PageRequest.of(page.orElse(0), 2);
+        Page<Items>  itemsList = cid == null ? productService.getListItems(store,pageable) : productService.getItemsByStoreAndCategory(store, categoryService.getCategoryById(cid),pageable);
+        List<Items> itemsListAll = productService.getListItemsByStore(store);
 
+        int numberPage = 0;
+        if(cid == null){
+            numberPage = itemsListAll.size() / 2;
+            if (itemsListAll.size() % 2 != 0){
+                numberPage = numberPage +1;
+            }
+        } else {
+            List<Items> itemsCategoryListAll = productService.getItemsByStoreAndCategory(store,categoryService.getCategoryById(cid));
+            numberPage = itemsCategoryListAll.size() / 2;
+            if (itemsCategoryListAll.size() % 2 != 0){
+                numberPage = numberPage +1;
+            }
+        }
+        List<Items> itemSize = itemsListAll.stream().limit(numberPage).collect(Collectors.toList());
         model.addAttribute("store", store);
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("cat", cid != null ? categoryService.getCategoryById(cid) : null);
         model.addAttribute("itemsList", itemsList);
+        model.addAttribute("size", itemsListAll);
+        model.addAttribute("itemSize", itemSize);
+        model.addAttribute("numberPage",page.orElse(0).intValue());
         return "public.store.product";
     }
 

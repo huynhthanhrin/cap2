@@ -118,7 +118,12 @@ public class AdminUserController {
     public String updateUser(@ModelAttribute("user") User user, @PathVariable int uid, @RequestParam(name = "storeId", required = false) Integer storeId,
                              @RequestParam(name = "wardId", required = false) Integer wardId, RedirectAttributes rd,
                              HttpServletRequest request) throws ParseException {
-        String dateStr = request.getParameter("birthday");
+        String dateStr = "";
+
+        if (request.getParameter("birthday") != null) {
+            dateStr = request.getParameter("birthday");
+        }
+
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Date dob = null;
 

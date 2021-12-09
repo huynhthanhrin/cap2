@@ -223,14 +223,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="card_number" class="col-sm-4 control-label">Identify Card Number</label>
+                        <label for="card_number_up" class="col-sm-4 control-label">Identify Card Number</label>
 
                         <div class="col-sm-8">
                             <input type="email" class="input form-control" id="card_number_up" value="${userInfo.identityCardNumber}" required/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="phone_number" class="col-sm-4 control-label">Phone Number</label>
+                        <label for="phone_number_up" class="col-sm-4 control-label">Phone Number</label>
 
                         <div class="col-sm-8">
                             <input type="email" class="input form-control" id="phone_number_up" value="${userInfo.phoneNumber}" required/>
@@ -238,7 +238,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="ngaysinh_tk" class="col-sm-4 control-label">Birth day</label>
+                        <label for="date_of_birth_up" class="col-sm-4 control-label">Birth day</label>
 
                         <div class="col-sm-8">
                             <input type="date" class="input form-control" id="date_of_birth_up" value="${userInfo.dateOfBirth}"  required/>
@@ -251,12 +251,12 @@
                         <div class="col-sm-8">
                             <select class="input form-control" name="gioitinh" id="gender_tk"
                                 <option value="Female"  ${userInfo.gender == 'Female' ? 'selected' : ''}>Female</option>
-                                <option value="Female"  ${userInfo.gender == 'Female' ? 'selected' : ''}>Male</option>
+                                <option value="Male"  ${userInfo.gender == 'Female' ? 'selected' : ''}>Male</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="address" class="col-sm-4 control-label">Address</label>
+                        <label for="address_up" class="col-sm-4 control-label">Address</label>
 
                         <div class="col-sm-8">
                             <input type="email" class="input form-control" id="address_up" value="${userInfo.address}" required/>
@@ -264,10 +264,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="gender_tk" class="col-sm-4 control-label">Ward</label>
+                        <label for="ward_tk" class="col-sm-4 control-label">Ward</label>
 
                         <div class="col-sm-8">
-                            <select class="input form-control" name="gioitinh" id="gender_tk">
+                            <select class="input form-control" name="gioitinh" id="ward_tk">
                                 <option value="An Khe">An Khe</option>
                                 <option value="Hoa Khe">Hoa Khe</option>
                             </select>
@@ -286,6 +286,6 @@
                 </form>
             </c:otherwise>
         </c:choose>
-
+            </div>
     </div>
 </div>

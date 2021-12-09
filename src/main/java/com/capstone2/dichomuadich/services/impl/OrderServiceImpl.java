@@ -34,6 +34,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public int updateOrderStatusPayment(int status, int order) {
+        return orderRepository.updateOrderStatusPayment(status,order);
+    }
+
+    @Override
     public List<Order> findOrderByUser(User user) {
         return orderRepository.findOrderByUser(user);
     }
@@ -41,6 +46,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> findAll() {
         return orderRepository.findAll();
+    }
+
+    @Override
+    public Order findOrderByOrderId(int id) {
+        return orderRepository.findOrderByOrderId(id);
     }
 
 

@@ -57,7 +57,7 @@
                   <div class="box-right">
                     <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
                     <ul class="product-list">
-                      <c:forEach items="${combos}" var="combo">
+                      <c:forEach items="${combos.content}" var="combo">
                         <li class="col-sm-4 product-item">
                           <div class="left-block">
                             <a><img style="height: 180px" alt="product"
@@ -93,36 +93,28 @@
           <div class="bottom-pagination">
             <nav>
               <ul class="pagination">
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                  <a href="#" aria-label="Next">
-                    <span aria-hidden="true">Next &raquo;</span>
-                  </a>
-                </li>
+                <c:if test="${numberPage>0}">
+                  <li>
+                      <a href="${pageContext.request.contextPath}${store.storeId}?page=${combos.number - 1}" aria-label="Next">
+                        <span aria-hidden="true"><< Previous</span>
+                      </a>
+                  </li>
+                </c:if>
+                <c:forEach varStatus="index" items="${comboSize}" var="item">
+                    <li class="${numberPage == index.index? 'active' : null}"><a href="${pageContext.request.contextPath}${store.storeId}?page=${index.index}">${index.index+1}</a></li>
+                </c:forEach>
+                <c:if test="${numberPage<combos.totalPages - 1}">
+                  <li>
+
+                      <a href="${pageContext.request.contextPath}${store.storeId}?page=${combos.number + 1}" aria-label="Next">
+                        <span aria-hidden="true">Next >></span>
+                      </a>
+                  </li>
+                </c:if>
               </ul>
             </nav>
           </div>
-          <div class="show-product-item">
-            <select name="">
-              <option value="">Show 9</option>
-              <option value="">Show 18</option>
-              <option value="">Show 27</option>
-              <option value="">Show 36</option>
-            </select>
-          </div>
-          <div class="sort-product">
-            <select>
-              <option value="">Product Name</option>
-              <option value="">Price</option>
-            </select>
-            <div class="sort-product-icon">
-              <i class="fa fa-sort-alpha-asc"></i>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>

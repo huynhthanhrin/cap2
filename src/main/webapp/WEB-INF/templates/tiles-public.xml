@@ -14,6 +14,10 @@
                        value="/WEB-INF/templates/admin/inc/footer.jsp"/>
     </definition>
 
+    <definition name="public.payment" template="/WEB-INF/templates/public/views/payment.jsp">
+
+    </definition>
+
     <definition name="templates.public"
                 template="/WEB-INF/templates/public/inc/master.jsp">
         <put-attribute name="header"
@@ -96,6 +100,7 @@
         <put-attribute name="body"
                        value="/WEB-INF/templates/public/views/comboDetail.jsp" />
     </definition>
+
     <definition name="error.404"
                 template="/WEB-INF/templates/error/error-404.jsp">
 

@@ -43,7 +43,7 @@ public class AdminItemController {
     {
         HttpSession session = request.getSession();
         User user = (User)session.getAttribute("userLogin");
-        List<Items> listItems = productService.getListItems(user.getStore());
+        List<Items> listItems = productService.getListItemsByStore(user.getStore());
         List<Category> listCategorys = categoryService.getListCategoryByStore(user.getStore());
         model.addAttribute("listProducts", listItems);
         model.addAttribute("listCategorys", listCategorys);

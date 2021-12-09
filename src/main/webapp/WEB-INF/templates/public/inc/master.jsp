@@ -22,7 +22,9 @@
     <link rel="stylesheet" type="text/css" href="/resources/templates/public/css/responsive.css"/>
     <link rel="stylesheet" type="text/css" href="/resources/templates/public/css/style_frm_dkdn.css"/>
     <link rel="stylesheet" href="/resources/templates/public/css/switcher.css">
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <title>FMOOS</title>
 </head>
 <body class="green">
@@ -68,6 +70,7 @@
 <script type="text/javascript" src="/resources/templates/public/js/shoppingCart.js"></script>
 <script type="text/javascript" src="/resources/templates/public/js/checkout.js"></script>
 <script type="text/javascript" src="/resources/templates/public/js/login.js"></script>
+
 <script type="text/javascript" src="js/layout.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {

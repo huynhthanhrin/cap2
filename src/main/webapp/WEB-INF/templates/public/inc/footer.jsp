@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../../tags/taglibs.jsp" %>
 <div class="container">
     <!-- introduce-box -->
     <div id="introduce-box" class="row">
@@ -7,11 +9,11 @@
 
                 <div id="address-list">
                     <div class="tit-name">Address:</div>
-                    <div class="tit-contain">999 Le Van Hien street, Ngu Hanh Son District, Danang city, Vietnam.</div>
+                    <div class="tit-contain">254 Nguyen Van Linh</div>
                     <div class="tit-name">Phone:</div>
-                    <div class="tit-contain">(+84) 511.3446.295</div>
+                    <div class="tit-contain">(+84) 973.777.888</div>
                     <div class="tit-name">Email:</div>
-                    <div class="tit-contain">ecoshop@gmail.com</div>
+                    <div class="tit-contain">C2SE10@gmail.com</div>
                 </div>
             </div>
         </div>
@@ -73,6 +75,6 @@
 
 
     <div id="footer-menu-box">
-        <p class="text-center">Copyrights &#169; 2016 Eco Shop. All Rights Reserved.</p>
+        <p class="text-center">Copyrights &#169; 2021 C2SE10 Team</p>
     </div><!-- /#footer-menu-box -->
 </div>

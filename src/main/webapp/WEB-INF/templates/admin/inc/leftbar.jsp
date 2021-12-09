@@ -20,9 +20,11 @@
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                      data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="<%= request.getContextPath()%>/admin/category">Category</a>
-                        <a class="nav-link" href="<%= request.getContextPath()%>/admin/product/index">Product</a>
-                        <a class="nav-link" href="<%= request.getContextPath()%>/admin/combo/index">Combo</a>
+                        <c:if test="${userLogin.role.roleCode == 'STORE_MANAGER'}">
+                            <a class="nav-link" href="<%= request.getContextPath()%>/admin/category">Category</a>
+                            <a class="nav-link" href="<%= request.getContextPath()%>/admin/product/index">Product</a>
+                            <a class="nav-link" href="<%= request.getContextPath()%>/admin/combo/index">Combo</a>
+                        </c:if>
                         <c:if test="${userLogin.role.roleCode == 'WARD_MANAGER' || userLogin.role.roleCode == 'STORE_MANAGER'}">
                             <a class="nav-link" href="<%= request.getContextPath()%>/admin/order/index">Order</a>
                         </c:if>

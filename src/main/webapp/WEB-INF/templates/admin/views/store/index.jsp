@@ -253,6 +253,14 @@
                                                     <input type="file" name="file" class="form-control" required>
                                                 </div>
                                                 <div class="">
+                                                    <label  class="col-form-label">Store Type</label><br>
+                                                    <select class="form-control" name="storeType" required>
+                                                        <option value="0">--Choose Type--</option>
+                                                        <option value="1">Food</option>
+                                                        <option value="2">Medicine</option>
+                                                    </select>
+                                                </div>
+                                                <div class="">
                                                     <label  class="col-form-label">Wards:</label><br>
                                                     <select class="form-control" name="wardId" required>
                                                         <option value="0">--Choose Wards--</option>

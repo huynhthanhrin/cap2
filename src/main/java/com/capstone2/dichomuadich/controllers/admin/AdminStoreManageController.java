@@ -50,7 +50,8 @@ public class AdminStoreManageController {
 
     @PostMapping("add")
     public String addStore(@ModelAttribute("store") Store store, @RequestParam("file") MultipartFile file,
-                           @RequestParam("wardId") int wardId, HttpServletRequest request, Model model, RedirectAttributes rd) throws IOException {
+                           @RequestParam("wardId") int wardId, HttpServletRequest request,
+                           @RequestParam("storeType") int storeType, Model model, RedirectAttributes rd) throws IOException {
         String fileNames = "";
         if (file != null) {
             fileNames = FileUtil.upload(file, request);
@@ -59,12 +60,13 @@ public class AdminStoreManageController {
 
         Wards wards = wardsService.findWardByWardsId(wardId);
         store.setWards(wards);
+        store.setStoreType(storeType);
 
         Store existStore = storeService.findByStoreName(store.getStoreName());
         if (Objects.isNull(existStore))
         {
             Store storeSave = storeService.save(store);
-            if (!Objects.nonNull(storeSave))
+            if (Objects.nonNull(storeSave))
             {
                 rd.addFlashAttribute(CommonConstants.MSG,
                         messageSource.getMessage("add_success", null, Locale.getDefault()));

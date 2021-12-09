@@ -21,9 +21,16 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Transactional
     int updateOrderStatus(int status, int orderId);
 
+    @Modifying
+    @Query(value = "update order_tb set statusPayment = ? where orderId = ?", nativeQuery = true)
+    @Transactional
+    int updateOrderStatusPayment(int status, int orderId);
+
     List<Order> findOrderByUser(User user);
 
     List<Order> findAll();
+
+    Order findOrderByOrderId(int id);
 
 
 }

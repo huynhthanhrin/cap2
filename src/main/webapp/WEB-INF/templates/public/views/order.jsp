@@ -4,6 +4,20 @@
 
 <!-- page wapper-->
 <div class="columns-container">
+    <c:if test="${not empty payment_success}">
+
+        <script>
+            swal({
+                title: 'Payment Online Successfully!',
+                /* text: 'Redirecting...', */
+                icon: 'success',
+                timer: 2000,
+                buttons: true,
+                type: 'success'
+            })
+        </script>
+    </c:if>
+
     <div class="container" id="columns">
         <!-- page heading-->
         <h2 class="page-heading">
@@ -53,15 +67,15 @@
                                 <th class="cart_product">${index.index + 1}</th>
                                 <th>ODR${order.orderId}</th>
                                 <th>
-                                    <c:forEach items="${order.items}" var="it">
-                                        <c:forEach items="${orderItemService.findOrderItemsByOrder(order)}" var="orderItem">
-                                            <c:if test="${orderItem.items ne null}">
-                                                <li>${orderItem.items.itemName} x  ${orderItem.itemQuantity} ${orderItem.items.unit}</li>
-                                            </c:if>
-                                            <c:if test="${orderItem.combo ne null}">
-                                                <li>${orderItem.combo.comboName} x  ${orderItem.comboQuantity} </li>
-                                            </c:if>
-                                        </c:forEach>
+
+                                    <c:forEach items="${orderItemService.findOrderItemsByOrder(order)}" var="orderItem">
+                                        <c:if test="${orderItem.items ne null}">
+                                            <li>${orderItem.items.itemName} x  ${orderItem.itemQuantity} ${orderItem.items.unit}</li>
+                                        </c:if>
+                                        <c:if test="${orderItem.combo ne null}">
+                                            <li>${orderItem.combo.comboName} x  ${orderItem.comboQuantity} </li>
+                                        </c:if>
+
                                     </c:forEach>
                                     <c:forEach items="${order.combos}" var="com">
                                         <li>
@@ -77,27 +91,38 @@
                                 <th>${order.totalPrice}</th>
                                 <th>
                                     <c:choose>
-                                        <c:when test="${order.status == 0}">
+                                        <c:when test="${order.status == 0 || order.status == 1}">
                                             <span style="background-color: #ff9900" class="badge badge-success">Waiting for confirmation</span>
-                                        </c:when>
-                                        <c:when test="${order.status == 1}">
-                                            <span style="background-color: #17a2b8" class="badge badge-danger">Preparing orders</span>
+
                                         </c:when>
                                         <c:when test="${order.status == 2}">
+                                            <span style="background-color: #17a2b8" class="badge badge-danger">Preparing orders</span>
+
+                                        </c:when>
+                                        <c:when test="${order.status == 3 || order.status == 4}">
                                             <span style="background-color: #007bff" class="badge badge-danger">Delivery</span>
+
                                         </c:when>
-                                        <c:when test="${order.status == 3}">
+                                        <c:when test="${order.status == 5}">
                                             <span style="background-color: #28a745" class="badge badge-danger">Successfully</span>
+
                                         </c:when>
-                                        <c:when test="${order.status == 4}">
+                                        <c:when test="${order.status == 6}">
                                             <span style="background-color: #dc3545" class="badge badge-danger">Cancelled</span>
                                         </c:when>
+
                                     </c:choose>
 
                                 </th>
                                 <th>
-                                    <c:if test="${order.status == 0 || order.status == 1}">
-                                        <a href="/order/cancel/${order.orderId}" type="button" class="btn btn-danger btn-sm">Cancel order</a>
+                                    <c:if test="${order.status == 0 && order.statusPayment == 0 || order.status == 1 && order.statusPayment == 0}">
+                                        <a style="width: 150px" href="/order/cancel/${order.orderId}" type="button" class="btn btn-danger ">Cancel order</a>
+                                    </c:if>
+                                    <c:if test="${order.status == 1 && order.statusPayment == 0 }">
+                                        <a style="width: 150px;margin-top: 10px" href="/payment/${order.orderId}" type="button" class="btn btn-success ">Payment Online</a>
+                                    </c:if>
+                                    <c:if test="${order.statusPayment == 1 }">
+                                        <span style="background-color: #ff9900" class="badge badge-danger">Paid</span>
                                     </c:if>
 
                                 </th>

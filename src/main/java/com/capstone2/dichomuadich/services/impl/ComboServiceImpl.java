@@ -5,6 +5,8 @@ import com.capstone2.dichomuadich.domain.Store;
 import com.capstone2.dichomuadich.repository.ComboRepository;
 import com.capstone2.dichomuadich.services.ComboService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,11 @@ public class ComboServiceImpl implements ComboService{
     @Override
     public List<Combo> getListComboByStore(Store store) {
         return comboRepository.findComboByStore(store);
+    }
+
+    @Override
+    public Page<Combo> getListComboByStore(Store store, Pageable pageable) {
+        return comboRepository.findComboByStore(store,pageable);
     }
 
     @Override

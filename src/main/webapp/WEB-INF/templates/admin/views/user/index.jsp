@@ -37,10 +37,14 @@
                     <tr>
                         <th>STT</th>
                         <th>Name</th>
-                        <th>Gender</th>
+                        <c:if test="${role.roleCode == 'CLIENT'}">
+                            <th>Gender</th>
+                        </c:if>
                         <th>Avatar</th>
                         <th>Username</th>
-                        <th>Date of birth</th>
+                        <c:if test="${role.roleCode == 'CLIENT'}">
+                             <th>Date of birth</th>
+                        </c:if>
                         <th>Phone</th>
                         <th>Email</th>
                         <th>Address</th>
@@ -60,10 +64,14 @@
                     <tr>
                         <th>STT</th>
                         <th>Name</th>
-                        <th>Gender</th>
+                        <c:if test="${role.roleCode == 'CLIENT'}">
+                            <th>Gender</th>
+                        </c:if>
                         <th>Avatar</th>
                         <th>Username</th>
-                        <th>Date of birth</th>
+                        <c:if test="${role.roleCode == 'CLIENT'}">
+                            <th>Date of birth</th>
+                        </c:if>
                         <th>Phone</th>
                         <th>Email</th>
                         <th>Address</th>
@@ -84,10 +92,14 @@
                         <tr>
                             <td><strong>${index.index + 1} </strong></td>
                             <td>${user.firstName} ${user.lastName}</td>
-                            <td>${user.gender}</td>
+                            <c:if test="${role.roleCode == 'CLIENT'}">\
+                                <td>${user.gender}</td>
+                            </c:if>
                             <td>${user.avatar}</td>
                             <td>${user.username}</td>
-                            <td>${user.dateOfBirth}</td>
+                            <c:if test="${role.roleCode == 'CLIENT'}">
+                                <td>${user.dateOfBirth}</td>
+                            </c:if>
                             <td>${user.phoneNumber}</td>
                             <td>${user.email}</td>
                             <td>${user.address}</td>
@@ -96,7 +108,7 @@
                                     ${user.store.storeName}
                                 </c:if>
                                 <c:if test="${role.roleCode == 'WARD_MANAGER'}">
-                                    ${user.store.wardName}
+                                    ${user.wards.wardName}
                                 </c:if>
                             </td>
                             <td>
@@ -187,17 +199,19 @@
                                                             <label  class="col-form-label">Password:</label>
                                                             <input class="form-control"  type="text" name="password" value="" >
                                                         </div>
-                                                        <div class="form-con">
-                                                            <label  class="col-form-label">Date of birth:</label>
-                                                            <input class="form-control"  type="date" name="birthday" value="${user.dateOfBirth}" required>
-                                                        </div>
-                                                        <div class="">
-                                                            <label  class="col-form-label">Gender:</label>
-                                                            <select class="form-control" name="gender" required>
-                                                                <option value="Male">Male</option>
-                                                                <option value="Female">Female</option>
-                                                            </select>
-                                                        </div>
+                                                        <c:if test="${role.roleCode == 'CLIENT'}">
+                                                            <div class="form-con">
+                                                                <label  class="col-form-label">Date of birth:</label>
+                                                                <input class="form-control"  type="date" name="birthday" value="${user.dateOfBirth}" required>
+                                                            </div>
+                                                            <div class="">
+                                                                <label  class="col-form-label">Gender:</label>
+                                                                <select class="form-control" name="gender" required>
+                                                                    <option value="Male">Male</option>
+                                                                    <option value="Female">Female</option>
+                                                                </select>
+                                                            </div>
+                                                        </c:if>
                                                         <div class="">
                                                             <label  class="col-form-label">Phone number:</label>
                                                             <input class="form-control"  type="text" name="phoneNumber" value="${user.phoneNumber}" required>

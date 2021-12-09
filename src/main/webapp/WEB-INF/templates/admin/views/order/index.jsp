@@ -81,40 +81,58 @@
                                 <c:when test="${order.status == 0}">
                                 <span style="background-color: #ff9900" class="badge badge-success">Waiting for confirmation</span>
                                 </c:when>
-                                <c:when test="${order.status == 1 && userLogin.role.roleCode eq 'STORE_MANAGER'}">
-                                <span style="background-color: #17a2b8" class="badge badge-danger">Preparing orders</span>
-                                </c:when>
                                 <c:when test="${order.status == 1 && userLogin.role.roleCode eq 'WARD_MANAGER'}">
+                                <span style="background-color: #17a2b8" class="badge badge-danger">Waiting for confirmation from store</span>
+                                </c:when>
+                                <c:when test="${order.status == 1 && userLogin.role.roleCode eq 'STORE_MANAGER'}">
+                                <span style="background-color: #17a2b8" class="badge badge-danger">Confirm Order</span>
+                                </c:when>
+                                <c:when test="${order.status == 2 && userLogin.role.roleCode eq 'WARD_MANAGER'}">
                                 <span style="background-color: #17a2b8" class="badge badge-danger">Waiting preparing orders from store</span>
                                 </c:when>
                                 <c:when test="${order.status == 2 && userLogin.role.roleCode eq 'STORE_MANAGER'}">
-                                <span style="background-color: #007bff" class="badge badge-danger">Delivery</span>
-                                </c:when>
-                                <c:when test="${order.status == 2 && userLogin.role.roleCode eq 'WARD_MANAGER'}">
-                                <span style="background-color: #007bff" class="badge badge-danger">The order is ready
-                                </span>
+                                <span style="background-color: #007bff" class="badge badge-danger">Preparing Order</span>
                                 </c:when>
                                 <c:when test="${order.status == 3}">
-                                <span style="background-color: #28a745" class="badge badge-danger">Successfully</span>
+                                    <span style="background-color: #007bff" class="badge badge-danger">The order is ready
+                                </span>
                                 </c:when>
                                 <c:when test="${order.status == 4}">
+                                <span style="background-color: #de7b26" class="badge badge-danger">Orders are being delivered
+                                </span>
+                                </c:when>
+                                <c:when test="${order.status == 5}">
+                                <span style="background-color: #28a745" class="badge badge-danger">Successfully</span>
+
+                                </c:when>
+                                <c:when test="${order.status == 6}">
                                 <span style="background-color: #dc3545" class="badge badge-danger">Cancelled</span>
                                 </c:when>
                                 </c:choose>
                             <td>
-                                <c:if test="${order.status == 0}">
+                                <c:if test="${order.status == 0 }">
                                     <a  style="width:100px" class="btn btn-primary" href="${pagecontext.request.contextPath }/order/update-status/1/${order.orderId}" >
                                        Confirm Order
                                     </a>
                                 </c:if>
                                 <c:if test="${order.status == 1 && userLogin.role.roleCode eq 'STORE_MANAGER'}">
                                     <a  style="width:100px" class="btn btn-warning"  href="${pagecontext.request.contextPath }/order/update-status/2/${order.orderId}">
-                                       Complete Prepare
+                                       Confirm Order
                                     </a>
                                 </c:if>
-                                <c:if test="${order.status == 2}">
+                                <c:if test="${order.status == 2  && userLogin.role.roleCode eq 'STORE_MANAGER'}">
                                     <a  style="width:100px" class="btn btn-success" href="${pagecontext.request.contextPath }/order/update-status/3/${order.orderId}">
-                                       Complete Order
+                                       Complete Preparing
+                                    </a>
+                                </c:if>
+                                <c:if test="${order.status == 3  && userLogin.role.roleCode eq 'WARD_MANAGER'}">
+                                    <a  style="width:100px" class="btn btn-success" href="${pagecontext.request.contextPath }/order/update-status/4/${order.orderId}">
+                                        Order received from the store
+                                    </a>
+                                </c:if>
+                                <c:if test="${order.status == 4  && userLogin.role.roleCode eq 'WARD_MANAGER'}">
+                                    <a  style="width:100px" class="btn btn-success" href="${pagecontext.request.contextPath }/order/update-status/5/${order.orderId}">
+                                        Successfully
                                     </a>
                                 </c:if>
 <%--                                <c:if test="${order.status == 3}">--%>

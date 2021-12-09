@@ -45,6 +45,8 @@ public class Order {
 
     private int status;
 
+    private int statusPayment;
+
     @ManyToOne(
             cascade = CascadeType.MERGE,
             fetch = FetchType.EAGER
