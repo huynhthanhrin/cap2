@@ -298,7 +298,7 @@
                                                 </div>
                                                 <div class="">
                                                     <label  class="col-form-label">Description:</label><br>
-                                                    <textarea name="description" id="editor" class="form-control" rows="5" required></textarea>
+                                                    <textarea name="description" id="editor" class="form-control" rows="5" ></textarea>
                                                 </div>
 
                                             </div>

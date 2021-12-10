@@ -16,4 +16,6 @@ public interface StoreService {
     Store findStoreByStoreId(int id);
 
     void delete(Integer id);
+
+    void deactiveStore(int storeId);
 }

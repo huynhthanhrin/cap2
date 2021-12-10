@@ -38,4 +38,7 @@ public class Store {
     @JoinColumn(name = "wardsId")
     private Wards wards;   //cửa hàng thuộc phường
 
+    @Column(columnDefinition = "integer default 1")
+    private int status;
+
 }

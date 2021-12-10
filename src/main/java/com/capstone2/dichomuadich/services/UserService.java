@@ -1,6 +1,7 @@
 package com.capstone2.dichomuadich.services;
 
 import com.capstone2.dichomuadich.domain.Role;
+import com.capstone2.dichomuadich.domain.Store;
 import com.capstone2.dichomuadich.domain.User;
 
 import java.util.List;
@@ -24,5 +25,7 @@ public interface UserService {
     void updateToken(String token, String name);
 
     List<User> findAll();
+
+    void delUsersByStore(int storeId);
 
 }

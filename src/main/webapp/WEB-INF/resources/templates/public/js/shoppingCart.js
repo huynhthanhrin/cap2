@@ -137,11 +137,43 @@ var shoppingCart = (function () {
 
     obj.listCart = function () { // -> array of Items
         var cartCopy = [];
+        var storeIdList = [];
         console.log("Listing cart");
         console.log(cart);
         for (var i in cart) {
             console.log(i);
             var item = cart[i];
+            if (!storeIdList.includes(item.storeId))
+            {
+                storeIdList.push(item.storeId);
+            }
+            if (storeIdList.length > 1)
+            {
+
+                var pcheckout = document.getElementById("pcheckout");
+                if (typeof(pcheckout) != 'undefined' && pcheckout != null)
+                {
+                    pcheckout.style.display = 'none';
+                }
+                var notcheckout = document.getElementById("notcheckout");
+                if (typeof(notcheckout) != 'undefined' && notcheckout != null)
+                {
+                    notcheckout.style.display = 'block';
+                }
+
+            } else {
+                var pcheckout = document.getElementById("pcheckout");
+                if (typeof(pcheckout) != 'undefined' && pcheckout != null)
+                {
+                    // Exists.
+                    pcheckout.style.display = 'block';
+                }
+                var notcheckout = document.getElementById("notcheckout");
+                if (typeof(notcheckout) != 'undefined' && notcheckout != null)
+                {
+                    notcheckout.style.display = 'none';
+                }
+            }
             var itemCopy = {};
             for (var p in item) {
                 itemCopy[p] = item[p];

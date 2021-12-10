@@ -1,6 +1,7 @@
 package com.capstone2.dichomuadich.services.impl;
 
 import com.capstone2.dichomuadich.domain.Role;
+import com.capstone2.dichomuadich.domain.Store;
 import com.capstone2.dichomuadich.domain.User;
 import com.capstone2.dichomuadich.repository.UserRepository;
 import com.capstone2.dichomuadich.services.UserService;
@@ -95,5 +96,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public void delUsersByStore(int storeId) {
+        userRepository.deleteUserByStoreID(storeId);
     }
 }

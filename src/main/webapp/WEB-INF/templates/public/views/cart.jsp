@@ -31,6 +31,9 @@
             <div class="heading-counter warning" ><span class="fa fa-shopping-cart"></span> Your shopping cart contains:
                 <span id="count-cart" style="font-weight: bold">1</span> <span> Products</span>
             </div>
+            <div class="alert alert-danger" role="alert" hidden id="notcheckout">
+                You can only order from one store, please choose again or delete products!
+            </div>
             <div class="order-detail-content">
                 <table class="table table-bordered table-responsive cart_summary">
                     <thead>
@@ -58,7 +61,7 @@
                 </table>
                 <div class="cart_navigation">
                     <a class="prev-btn" href="javascript:history.go(-1)">Continue shopping</a>
-                    <a class="next-btn" href="/checkout">Proceed to checkout</a>
+                    <a id="pcheckout" class="next-btn" href="/checkout">Proceed to checkout</a>
                 </div>
             </div>
         </div>

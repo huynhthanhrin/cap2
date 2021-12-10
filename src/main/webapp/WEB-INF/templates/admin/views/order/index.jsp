@@ -129,6 +129,9 @@
                                     <a  style="width:100px" class="btn btn-primary" href="${pagecontext.request.contextPath }/order/update-status/1/${order.orderId}" >
                                        Confirm Order
                                     </a>
+                                    <a  style="width:100px" class="btn btn-danger" href="${pagecontext.request.contextPath }/order/update-status/6/${order.orderId}" >
+                                        Cancel Order
+                                    </a>
                                 </c:if>
                                 <c:if test="${order.status == 1 && userLogin.role.roleCode eq 'STORE_MANAGER'}">
                                     <a  style="width:100px" class="btn btn-warning"  href="${pagecontext.request.contextPath }/order/update-status/2/${order.orderId}">

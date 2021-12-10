@@ -176,7 +176,8 @@
                                     </div>
                                     <div class="right-block">
                                         <h5 class="product-name"><a href="/store/product/detail/${items.store.storeId}/${items.itemsId}">${items.itemName}</a></h5>
-
+                                        <br>
+                                        <h5 class="product-name"><a href="/store/product/${items.store.storeId}">${items.store.storeName}</a></h5>
                                         <div class="content_price">
                                             <span class="price product-price"><span style="color: black">Price:</span>${items.price}</span>
                                         </div>
@@ -232,7 +233,8 @@
                                         </div>
                                         <div class="right-block">
                                             <h5 class="product-name"><a href="/store/combo/detail/${combo.store.storeId}/${combo.comboId}">${combo.comboName} - ${combo.store.storeName}</a></h5>
-
+                                            <br>
+                                            <h5 class="product-name"><a href="/store/product/${items.store.storeId}">${items.store.storeName}</a></h5>
                                             <div class="content_price">
                                                 <span class="price product-price"><span style="color: black">Price:</span>${combo.price}</span>
                                             </div>

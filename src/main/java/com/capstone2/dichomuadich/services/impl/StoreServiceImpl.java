@@ -61,4 +61,9 @@ public class StoreServiceImpl implements StoreService {
             log.error("Error at [delete]", e);
         }
     }
+
+    @Override
+    public void deactiveStore(int storeId) {
+        storeRepository.deactiveStore(storeId);
+    }
 }

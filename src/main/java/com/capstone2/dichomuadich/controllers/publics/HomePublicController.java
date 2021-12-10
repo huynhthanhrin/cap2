@@ -46,12 +46,12 @@ public class HomePublicController {
     public void addModel(Model model)
     {
         List<Store> storeList = storeService.getAll();
-        List<Store> foodStore = (List<Store>) storeList.stream().filter(store -> store.getStoreType() == 1).collect(Collectors.toList());
-        List<Store> medicineSore = (List<Store>) storeList.stream().filter(store -> store.getStoreType() == 2).collect(Collectors.toList());
+        List<Store> foodStore = (List<Store>) storeList.stream().filter(store -> store.getStoreType() == 1 && store.getStatus() == 1).collect(Collectors.toList());
+        List<Store> medicineSore = (List<Store>) storeList.stream().filter(store -> store.getStoreType() == 2 && store.getStatus() == 1).collect(Collectors.toList());
         List<Wards> wardsList = wardsService.findAll();
         Sort sort = Sort.by("view").descending();
-        List<Combo> combos =  (List<Combo>)comboService.getAll(sort).stream().limit(10).collect(Collectors.toList());
-        List<Items> itemsList =  (List<Items>) productService.getAll(sort).stream().limit(10).collect(Collectors.toList());
+        List<Combo> combos =  (List<Combo>)comboService.getAll(sort).stream().filter(item -> storeService.findStoreByStoreId(item.getStore().getStoreId()).getStatus() == 1).limit(10).collect(Collectors.toList());
+        List<Items> itemsList =  (List<Items>) productService.getAll(sort).stream().filter(combo -> storeService.findStoreByStoreId(combo.getStore().getStoreId()).getStatus() == 1).limit(10).collect(Collectors.toList());
         model.addAttribute("itemsList", itemsList);
         model.addAttribute("storeList", storeList);
         model.addAttribute("foodStores", foodStore);

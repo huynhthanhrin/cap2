@@ -20,10 +20,15 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      * @return
      */
     User findUserByUsername(String username);
-
     User findUserByRememberToken(String rememberToken);
 
     List<User> findUsersByRole(Role role);
+
+
+    @Query(value = "DELETE FROM user WHERE storeId  = ?", nativeQuery = true)
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Transactional
+    void deleteUserByStoreID(int storeId);
 
     User findUserByUserId(Integer id);
 

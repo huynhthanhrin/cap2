@@ -4,9 +4,12 @@ import com.capstone2.dichomuadich.constant.CommonConstants;
 import com.capstone2.dichomuadich.domain.Store;
 import com.capstone2.dichomuadich.domain.Wards;
 import com.capstone2.dichomuadich.services.StoreService;
+import com.capstone2.dichomuadich.services.UserService;
 import com.capstone2.dichomuadich.services.WardsService;
 import com.capstone2.dichomuadich.utils.FileUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.fileupload.FileUpload;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -21,12 +24,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
 @Controller
 @RequestMapping("admin/store")
+@Slf4j
 public class AdminStoreManageController {
 
     @Autowired
@@ -37,6 +42,9 @@ public class AdminStoreManageController {
 
     @Autowired
     MessageSource messageSource;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping("/index")
     public String loadStoreManage(Model model, HttpServletRequest request)
@@ -140,7 +148,8 @@ public class AdminStoreManageController {
     @PostMapping("/del/{storeId}")
     public String delete(HttpServletRequest request, @PathVariable int storeId, RedirectAttributes rd)
     {
-        storeService.delete(storeId);
+        storeService.deactiveStore(storeId);
+
         rd.addFlashAttribute(CommonConstants.MSG,
                 messageSource.getMessage("del_success", null, Locale.getDefault()));
         return "redirect:/admin/store/index";

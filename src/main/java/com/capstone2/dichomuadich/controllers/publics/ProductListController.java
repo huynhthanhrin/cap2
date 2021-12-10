@@ -42,8 +42,8 @@ public class ProductListController {
     public void addModel(Model model)
     {
         List<Store> storeList = storeService.getAll();
-        List<Store> foodStore = (List<Store>) storeList.stream().filter(store -> store.getStoreType() == 1).collect(Collectors.toList());
-        List<Store> medicineSore = (List<Store>) storeList.stream().filter(store -> store.getStoreType() == 2).collect(Collectors.toList());
+        List<Store> foodStore = (List<Store>) storeList.stream().filter(store -> store.getStoreType() == 1 && store.getStatus() == 1).collect(Collectors.toList());
+        List<Store> medicineSore = (List<Store>) storeList.stream().filter(store -> store.getStoreType() == 2 && store.getStatus() == 1).collect(Collectors.toList());
         model.addAttribute("storeList", storeList);
         model.addAttribute("foodStores", foodStore);
         model.addAttribute("medicineStores", medicineSore);
