@@ -22,6 +22,8 @@ public class Category {
 
     private String catName;
 
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @ManyToOne(

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -151,6 +152,12 @@
                                     <div class="alert alert-danger" id="register_error_mes" hidden role="alert">
                                         Error when register. Please try again!
                                     </div>
+                                    <div class="alert alert-danger" id="register_error_exist" hidden role="alert">
+                                        This account already exists!
+                                    </div>
+                                    <div class="alert alert-danger" id="register_error_missing_info" hidden role="alert">
+                                        Please enter all information to continue!
+                                    </div>
                                     <div class="row">
                                         <div class="col-sm-4">
                                         </div>
@@ -181,7 +188,7 @@
             </c:when>
             <c:otherwise>
             <!-- REGISTER -->
-            <div class="tab-pane" id="Registratison">
+            <div class="tab-pane" id="updateUserInfo">
                 <form class="form-horizontal" name="dangkytk_form" action="#" method="post"
                       enctype="multipart/form-data" id="dangkytk_form register">
                     <div class="form-group">
@@ -210,7 +217,7 @@
                         <label for="pass_tk" class="col-sm-4 control-label">Password</label>
 
                         <div class="col-sm-8">
-                            <input type="password" class="input form-control" id="pass_tk" required/>
+                            <input type="password" class="input form-control" id="pass_tk"/>
                         </div>
                     </div>
 
@@ -218,7 +225,7 @@
                         <label for="repass_tk" class="col-sm-4 control-label">Re-password</label>
 
                         <div class="col-sm-8">
-                            <input type="password" class="input form-control" id="repass_tk" required/>
+                            <input type="password" class="input form-control" id="repass_tk" />
                         </div>
                     </div>
 
@@ -226,14 +233,14 @@
                         <label for="card_number_up" class="col-sm-4 control-label">Identify Card Number</label>
 
                         <div class="col-sm-8">
-                            <input type="email" class="input form-control" id="card_number_up" value="${userInfo.identityCardNumber}" required/>
+                            <input type="text" class="input form-control" id="card_number_up" value="${userInfo.identityCardNumber}" required/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="phone_number_up" class="col-sm-4 control-label">Phone Number</label>
 
                         <div class="col-sm-8">
-                            <input type="email" class="input form-control" id="phone_number_up" value="${userInfo.phoneNumber}" required/>
+                            <input type="text" class="input form-control" id="phone_number_up" value="${userInfo.phoneNumber}" required/>
                         </div>
                     </div>
 
@@ -241,7 +248,7 @@
                         <label for="date_of_birth_up" class="col-sm-4 control-label">Birth day</label>
 
                         <div class="col-sm-8">
-                            <input type="date" class="input form-control" id="date_of_birth_up" value="${userInfo.dateOfBirth}"  required/>
+                            <input type="date" class="input form-control" id="date_of_birth_up" value="<fmt:formatDate value="${userInfo.dateOfBirth}" pattern="yyyy-MM-dd" />" required />
                         </div>
                     </div>
 
@@ -259,7 +266,7 @@
                         <label for="address_up" class="col-sm-4 control-label">Address</label>
 
                         <div class="col-sm-8">
-                            <input type="email" class="input form-control" id="address_up" value="${userInfo.address}" required/>
+                            <input type="text" class="input form-control" id="address_up" value="${userInfo.address}" required/>
                         </div>
                     </div>
 

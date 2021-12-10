@@ -44,6 +44,7 @@
                         <th>Order time</th>
                         <th>Total</th>
                         <th>Detail</th>
+                        <th>Payment</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -58,6 +59,7 @@
                         <th>Order time</th>
                         <th>Total</th>
                         <th>Detail</th>
+                        <th>Payment</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -77,6 +79,19 @@
                             <td><fmt:formatNumber type = "number"
                                                   maxFractionDigits = "3" value = "${order.totalPrice}" /></td>
                             <td><a href="" data-bs-toggle="modal" data-bs-target="#exampleModalDes${order.orderId}">Detail</a></td>
+                            <td>
+                                <c:if test="${order.statusPayment == 1 }">
+                                    <span style="background-color: #ff9900" class="badge badge-danger">Paid</span>
+                                </c:if>
+                                <c:choose>
+                                    <c:when test="${order.statusPayment == 1}">
+                                        <span style="background-color: #ff9900" class="badge badge-danger">Paid</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span style="background-color: #0073ff" class="badge badge-danger">Non-Paid</span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
                             <td>    <c:choose>
                                 <c:when test="${order.status == 0}">
                                 <span style="background-color: #ff9900" class="badge badge-success">Waiting for confirmation</span>

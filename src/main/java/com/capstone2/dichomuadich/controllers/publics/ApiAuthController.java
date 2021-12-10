@@ -7,6 +7,7 @@ import com.capstone2.dichomuadich.models.JwtRequest;
 import com.capstone2.dichomuadich.models.JwtResponse;
 import com.capstone2.dichomuadich.models.RegisterRequest;
 import com.capstone2.dichomuadich.models.ResponseAPI;
+import com.capstone2.dichomuadich.services.RoleService;
 import com.capstone2.dichomuadich.services.UserService;
 import com.capstone2.dichomuadich.services.WardsService;
 import com.capstone2.dichomuadich.utils.JwtTokenUtil;
@@ -50,6 +51,9 @@ public class ApiAuthController {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    RoleService roleService;
 
     @Autowired
     @Qualifier("customUserDetailsService")
@@ -118,7 +122,9 @@ public class ApiAuthController {
         user.setGender(registerRequest.getGender());
         user.setAddress(registerRequest.getAddress());
         user.setWards(wardsService.findWardByWardsId(registerRequest.getWardId()));
+        user.setDateOfBirth(registerRequest.getDayOfBirth());
         user.setStatus(1);
+        user.setRole(roleService.findRoleByRoleId(4));
 
         User checkExist = userService.findByUsername(user.getUsername());
         HashMap resultLogin = new HashMap();

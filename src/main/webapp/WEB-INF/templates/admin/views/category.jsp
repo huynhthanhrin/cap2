@@ -176,11 +176,11 @@
                                             <div class="col-12">
                                                 <div class="">
                                                     <label  class="col-form-label">Name Category:</label>
-                                                    <input type="text" name="nameCategory" class="form-control" >
+                                                    <input type="text" name="nameCategory" class="form-control" required/>
                                                 </div>
                                                 <div class="">
                                                     <label  class="col-form-label">Description:</label><br>
-                                                    <textarea name="description" id="editor" class="form-control" rows="5"></textarea>
+                                                    <textarea name="description" id="editor" class="form-control" rows="5" required></textarea>
                                                 </div>
 
                                             </div>

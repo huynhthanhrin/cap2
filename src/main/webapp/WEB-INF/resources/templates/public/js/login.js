@@ -152,6 +152,14 @@ function handleRegister() {
     var address = $("#address_rg").val();
     var wardId = $("#ward_rg").val();
 
+    if (firstName === '' || lastName === '' || username === '' || password === '' ||
+        card_number === '' || phoneNumber === '' || dayOfBirth === '' || gender === ''
+        || address === '' || wardId === '')
+    {
+        $("#register_error_missing_info").show();
+        return;
+    }
+
     var data = {
         "firstName" : firstName,
         "lastName" : lastName,
@@ -176,6 +184,11 @@ function handleRegister() {
                 console.log(result);
                 window.location = "/index?reg=success";
                 $("#myModal").modal();
+                return;
+            }
+            if (result.code == '409') {
+                console.log(result);
+                $("#register_error_exist").show();
                 return;
             }
         },

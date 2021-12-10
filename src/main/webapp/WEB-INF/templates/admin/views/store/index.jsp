@@ -39,6 +39,7 @@
                         <th>Phone</th>
                         <th>Address</th>
                         <th>Logo</th>
+                        <th>Store Type</th>
                         <th>Wards</th>
                         <th>Description</th>
                         <th>Action</th>
@@ -51,6 +52,7 @@
                         <th>Phone</th>
                         <th>Address</th>
                         <th>Logo</th>
+                        <th>Store Type</th>
                         <th>Wards</th>
                         <th>Description</th>
                         <th>Action</th>
@@ -64,6 +66,16 @@
                             <td>${store.storePhone}</td>
                             <td>${store.address}</td>
                             <td><img style="width: 200px; height: 100px" src="/resources/uploads/${store.logo}" /></td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${store.storeType == 1}">
+                                        Food
+                                    </c:when>
+                                    <c:otherwise>
+                                        Medicine
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
                             <td>${store.wards.wardName}</td>
                             <td><a href="" data-bs-toggle="modal" data-bs-target="#exampleModalDes${store.storeId}">Detail</a></td>
                             <td>
@@ -166,9 +178,25 @@
                                                         <br>
                                                     </div>
                                                     <div class="">
+                                                        <label  class="col-form-label">Store Type:</label><br>
+
+                                                        <select class="form-control" name="storeType" required>
+                                                            <c:choose>
+                                                                <c:when test="${store.storeType == 1}">
+                                                                    <option value="1" selected>Food</option>
+                                                                    <option value="2">Medicine</option>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <option value="1">Food</option>
+                                                                    <option value="2" selected>Medicine</option>
+                                                                </c:otherwise>
+                                                            </c:choose>
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="">
                                                         <label  class="col-form-label">Wards:</label><br>
                                                         <select class="form-control" name="wardId" required>
-                                                            <option value="0">--Choose Wards--</option>
                                                             <c:forEach items="${wardsList}" var="ward">
 
                                                                 <c:choose>
@@ -255,7 +283,6 @@
                                                 <div class="">
                                                     <label  class="col-form-label">Store Type</label><br>
                                                     <select class="form-control" name="storeType" required>
-                                                        <option value="0">--Choose Type--</option>
                                                         <option value="1">Food</option>
                                                         <option value="2">Medicine</option>
                                                     </select>
@@ -263,7 +290,7 @@
                                                 <div class="">
                                                     <label  class="col-form-label">Wards:</label><br>
                                                     <select class="form-control" name="wardId" required>
-                                                        <option value="0">--Choose Wards--</option>
+
                                                         <c:forEach items="${wardsList}" var="ward">
                                                             <option value="${ward.wardsId}">${ward.wardName}</option>
                                                         </c:forEach>

@@ -10,7 +10,14 @@
             <div class="column col-xs-12 col-sm-3" id="left_column">
                 <!-- import left bar -->
                 <div class="block left-module">
-                    <p class="title_block"><span class="fa fa-pagelines"></span> ${store.storeName}</p>
+                    <p class="title_block"><span class="fa fa-pagelines"></span> ${store.storeName}
+                    <br>
+                        <br>
+                        <span style="font-size: 12px;">Phone: ${store.storePhone}</span>
+                        <br>
+                        <span style="font-size: 12px;">Address: ${store.address }</span>
+                    </p>
+
 
                     <div class="block_content">
                         <!-- layered -->

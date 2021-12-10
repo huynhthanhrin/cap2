@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- END Home slideder-->
 
 <!-- page wapper-->
@@ -83,12 +83,16 @@
                                         </li>
                                     </c:forEach>
                                 </th>
-                                <th>${order.store.storeName}</th>
+                                <th>
+                                    <a href="/store/product/${order.store.storeId}"> <strong>${order.store.storeName}</strong></a>
+                                </th>
                                 <th>${order.recipientName}</th>
                                 <th>${order.recipientAddress}</th>
                                 <th>${order.recipientPhone}</th>
-                                <th>${order.orderTime}</th>
-                                <th>${order.totalPrice}</th>
+                                <fmt:formatDate value="${order.orderTime}" var="timeOrder" pattern="HH:mm:ss dd:MM:yyyy"/>
+                                <th><fmt:formatDate value="${order.orderTime}" pattern="HH:mm:ss dd-MM-yyyy"/></th>
+                                <th><fmt:formatNumber type = "number"
+                                                      maxFractionDigits = "3" value = "${order.totalPrice}" /></th>
                                 <th>
                                     <c:choose>
                                         <c:when test="${order.status == 0 || order.status == 1}">

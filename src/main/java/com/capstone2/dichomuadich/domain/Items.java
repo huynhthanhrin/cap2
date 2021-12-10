@@ -35,6 +35,8 @@ public class Items {
 
     private String image;
 
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @Column(columnDefinition = "int default 0")

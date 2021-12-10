@@ -45,13 +45,13 @@
 
                                 <div class="form-group">
                                     <label for="re_name">Recipient's Name<span class="require">*</span></label>
-                                    <input type="text" id="re_name" class="input form-control">
+                                    <input type="text" id="re_name" class="input form-control" required>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     <label for="re_phone">Phone Number<span class="require">*</span></label>
-                                    <input type="text" id="re_phone" class="input form-control">
+                                    <input type="text" id="re_phone" class="input form-control" required>
                                 </div>
 
                             </div>
@@ -66,12 +66,7 @@
                             <div class="col-md-12">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" class="checkbox"> I wish to subscribe to the FMOOS newsletter.
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" id="same_dilivery_address" name="same_dilivery_address" checked="checked"> My delivery and billing addresses are the same.
+                                        <input type="checkbox" id="same_dilivery_address" name="same_dilivery_address"> My delivery and billing addresses are the same.
                                     </label>
                                 </div>
                                 <button class="button  pull-left" type="submit" data-toggle="collapse" data-parent="#checkout-page" data-target="#payment-method-content" id="button-payment-address">Continue</button>

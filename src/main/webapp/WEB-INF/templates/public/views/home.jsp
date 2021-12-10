@@ -36,6 +36,7 @@
                                 </div>
                                 <div class="right-block">
                                     <h5 class="product-name"><a href="/store/product/${store.storeId}">${store.address}</a></h5>
+                                    <h5 class="product-name"><a href="/store/product/${store.storeId}">${store.wards.wardName}</a></h5>
 
                                     <div class="content_price">
                                     <span class="price product-price">
@@ -81,6 +82,7 @@
                                     </div>
                                     <div class="right-block">
                                         <h5 class="product-name"><a href="/store/product/${store.storeId}">${store.address}</a></h5>
+                                        <h5 class="product-name"><a href="/store/product/${store.storeId}">${store.wards.wardName}</a></h5>
 
                                         <div class="content_price">
                                         <span class="price product-price">

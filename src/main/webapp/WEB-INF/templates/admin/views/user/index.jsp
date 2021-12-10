@@ -39,23 +39,31 @@
                         <th>Name</th>
                         <c:if test="${role.roleCode == 'CLIENT'}">
                             <th>Gender</th>
+                            <th>Avatar</th>
                         </c:if>
-                        <th>Avatar</th>
+
                         <th>Username</th>
                         <c:if test="${role.roleCode == 'CLIENT'}">
                              <th>Date of birth</th>
                         </c:if>
                         <th>Phone</th>
                         <th>Email</th>
-                        <th>Address</th>
-                        <th>
+                        <c:if test="${role.roleCode == 'CLIENT'}">
+                            <th>Address</th>
+                        </c:if>
+
                             <c:if test="${role.roleCode == 'STORE_MANAGER'}">
+                                <th>
                                 Store Manage
+                                </th>
                             </c:if>
                             <c:if test="${role.roleCode == 'WARD_MANAGER'}">
-                                Ward Manage
+                                <th>
+                                    Ward Manage
+                                </th>
+
                             </c:if>
-                        </th>
+
                         <th>Active</th>
                         <th>Action</th>
                     </tr>
@@ -66,23 +74,30 @@
                         <th>Name</th>
                         <c:if test="${role.roleCode == 'CLIENT'}">
                             <th>Gender</th>
+                            <th>Avatar</th>
                         </c:if>
-                        <th>Avatar</th>
+
                         <th>Username</th>
                         <c:if test="${role.roleCode == 'CLIENT'}">
                             <th>Date of birth</th>
                         </c:if>
                         <th>Phone</th>
                         <th>Email</th>
-                        <th>Address</th>
-                        <th>
-                            <c:if test="${role.roleCode == 'STORE_MANAGER'}">
+                        <c:if test="${role.roleCode == 'CLIENT'}">
+                            <th>Address</th>
+                        </c:if>
+
+                        <c:if test="${role.roleCode == 'STORE_MANAGER'}">
+                            <th>
                                 Store Manage
-                            </c:if>
-                            <c:if test="${role.roleCode == 'WARD_MANAGER'}">
+                            </th>
+                        </c:if>
+                        <c:if test="${role.roleCode == 'WARD_MANAGER'}">
+                            <th>
                                 Ward Manage
-                            </c:if>
-                        </th>
+                            </th>
+
+                        </c:if>
                         <th>Active</th>
                         <th>Action</th>
                     </tr>
@@ -92,25 +107,34 @@
                         <tr>
                             <td><strong>${index.index + 1} </strong></td>
                             <td>${user.firstName} ${user.lastName}</td>
-                            <c:if test="${role.roleCode == 'CLIENT'}">\
+                            <c:if test="${role.roleCode == 'CLIENT'}">
                                 <td>${user.gender}</td>
+                                <td>${user.avatar}</td>
                             </c:if>
-                            <td>${user.avatar}</td>
+
                             <td>${user.username}</td>
                             <c:if test="${role.roleCode == 'CLIENT'}">
                                 <td>${user.dateOfBirth}</td>
                             </c:if>
                             <td>${user.phoneNumber}</td>
                             <td>${user.email}</td>
-                            <td>${user.address}</td>
-                            <td>
+                            <c:if test="${role.roleCode == 'CLIENT'}">
+                                <td>${user.address}</td>
+                            </c:if>
+
+
                                 <c:if test="${role.roleCode == 'STORE_MANAGER'}">
+                                <td>
                                     ${user.store.storeName}
+                                 </td>
                                 </c:if>
                                 <c:if test="${role.roleCode == 'WARD_MANAGER'}">
-                                    ${user.wards.wardName}
+                                    <td>
+                                            ${user.wards.wardName}
+                                    </td>
+
                                 </c:if>
-                            </td>
+
                             <td>
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" ${user.status == 1 ? "checked" : ""}>
@@ -218,13 +242,12 @@
                                                         </div>
                                                         <div class="form-con">
                                                             <label  class="col-form-label">Email:</label>
-                                                            <input class="form-control"  type="text" name="email" value="${user.email}" required>
+                                                            <input class="form-control"  type="email" name="email" value="${user.email}" required>
                                                         </div>
                                                         <c:if test="${role.roleCode == 'STORE_MANAGER'}">
                                                             <div class="">
                                                                 <label  class="col-form-label">Store:</label><br>
                                                                 <select class="form-control" name="storeId" required>
-                                                                    <option value="0">--Choose Store--</option>
                                                                     <c:forEach items="${storeList}" var="store">
                                                                         <c:choose>
                                                                             <c:when test="${store.storeId == user.store.storeId}">
@@ -243,7 +266,6 @@
                                                             <div class="">
                                                                 <label  class="col-form-label">Ward:</label><br>
                                                                 <select class="form-control" name="wardId" required>
-                                                                    <option value="0">--Choose Ward--</option>
                                                                     <c:forEach items="${wardsList}" var="ward">
                                                                         <c:choose>
                                                                             <c:when test="${ward.wardsId == user.wards.wardsId}">
@@ -335,13 +357,12 @@
                                                 </div>
                                                 <div class="">
                                                     <label  class="col-form-label">Email:</label>
-                                                    <input type="text" name="email" class="form-control" required>
+                                                    <input type="email" name="email" class="form-control" required>
                                                 </div>
                                                 <c:if test="${role.roleCode == 'STORE_MANAGER'}">
                                                     <div class="">
                                                         <label  class="col-form-label">Store:</label><br>
                                                         <select class="form-control" name="storeId" required>
-                                                            <option value="0">--Choose Store--</option>
                                                             <c:forEach items="${storeList}" var="store">
                                                                 <option value="${store.storeId}">${store.storeName}</option>
                                                             </c:forEach>
@@ -353,7 +374,6 @@
                                                     <div class="">
                                                         <label  class="col-form-label">Ward:</label><br>
                                                         <select class="form-control" name="wardId" required>
-                                                            <option value="0">--Choose Ward--</option>
                                                             <c:forEach items="${wardsList}" var="ward">
                                                                 <option value="${ward.wardsId}">${ward.wardName}</option>
                                                             </c:forEach>

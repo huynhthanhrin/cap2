@@ -41,7 +41,6 @@
                         <th>Quantity</th>
                         <th>Category</th>
                         <th>Unit</th>
-                        <th>Store</th>
                         <th>Description</th>
                         <th>Action</th>
                     </tr>
@@ -54,7 +53,6 @@
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Category</th>
-                        <th>Store</th>
                         <th>Unit</th>
                         <th>Description</th>
                         <th>Action</th>
@@ -70,7 +68,6 @@
                             <td>${item.price}</td>
                             <td>${item.quantity}</td>
                             <td>${item.category.catName}</td>
-                            <td>${item.store.storeName}</td>
                             <td>${item.unit}</td>
                             <td><a href="" data-bs-toggle="modal" data-bs-target="#exampleModalDes${item.itemsId}">Detail</a></td>
                             <td>
@@ -185,7 +182,7 @@
                                                     </div>
                                                     <div class="">
                                                         <label  class="col-form-label">Description:</label><br>
-                                                        <textarea name="description" id="editor${index.index + 1}" class="form-control" rows="5" required>${item.description}</textarea>
+                                                        <textarea name="description" id="editor${index.index + 1}" class="form-control" rows="5" >${item.description}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -251,10 +248,6 @@
                                                 <div class="">
                                                     <label  class="col-form-label">Image:</label><br>
                                                     <input type="file" name="file" class="form-control" required>
-                                                </div>
-                                                <div class="">
-                                                    <label  class="col-form-label">Unit:</label><br>
-                                                    <input type="text" name="unit" class="form-control" required>
                                                 </div>
                                                 <div class="">
                                                     <label  class="col-form-label">Unit:</label><br>
