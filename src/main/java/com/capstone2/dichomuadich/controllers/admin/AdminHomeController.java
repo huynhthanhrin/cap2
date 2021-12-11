@@ -35,6 +35,7 @@ public class AdminHomeController {
     @Autowired
     OrderService orderService;
 
+
     @ModelAttribute
     public void addModel(Model model)
     {
@@ -50,6 +51,7 @@ public class AdminHomeController {
         model.addAttribute("userList", userList);
         model.addAttribute("orderList", orderList);
         model.addAttribute("newOrder", orderListProcess);
+        model.addAttribute("storeService", storeService);
 
     }
 

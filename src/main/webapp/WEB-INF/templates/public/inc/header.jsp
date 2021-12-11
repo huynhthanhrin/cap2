@@ -21,7 +21,7 @@
 
                 <a title="SignIn" href="" id="loginButton" data-toggle="modal" data-target="#myModal">Log In</a>
                 <c:if test="${userInfo != null}">
-                    <span style="margin-top: 20px; margin-left: -30px; color: darkseagreen; font-weight: bold;">Hello,${userInfo != null ? userInfo.getFullName() : ""}</span>
+                    <span style="margin-top: 20px; margin-left: -40px; color: darkseagreen; font-weight: bold;">${userInfo != null ? userInfo.getFullName() : ""}</span>
                 </c:if>
             </div>
         </div>

@@ -69,6 +69,7 @@ public class AdminStoreManageController {
         Wards wards = wardsService.findWardByWardsId(wardId);
         store.setWards(wards);
         store.setStoreType(storeType);
+        store.setStatus(1);
 
         Store existStore = storeService.findByStoreName(store.getStoreName());
         if (Objects.isNull(existStore))
@@ -108,6 +109,7 @@ public class AdminStoreManageController {
             fileNames = storeService.findStoreByStoreId(storeId).getLogo();
         }
         store.setLogo(fileNames);
+        store.setStatus(1);
 
         String nameStoreCurrent = storeService.findStoreByStoreId(storeId).getStoreName();
         if (nameStoreCurrent.equalsIgnoreCase(store.getStoreName())) {

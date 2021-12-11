@@ -220,7 +220,7 @@ function displayCart() {
     console.log(cartArray);
     var output = "";
     if (cartArray.length <= 0) {
-        output = "<p style='padding-left: 20px;'>Chưa có sản phẩm nào</p>"
+        output = "<p style='padding-left: 20px;'>No product in your shopping cart</p>"
     }
     else {
         for (var i in cartArray) {

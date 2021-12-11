@@ -188,28 +188,27 @@
             </c:when>
             <c:otherwise>
             <!-- REGISTER -->
-            <div class="tab-pane" id="updateUserInfo">
-                <form class="form-horizontal" name="dangkytk_form" action="#" method="post"
-                      enctype="multipart/form-data" id="dangkytk_form register">
+            <div class="tab-pane">
+                <form class="form-horizontal" action="/admin/user/update/${userInfo.userId}" method="post">
                     <div class="form-group">
-                        <label for="frm_name" class="col-sm-4 control-label">First Name</label>
+                        <label for="first_name_up" class="col-sm-4 control-label">First Name</label>
 
                         <div class="col-sm-8">
                             <input type="text" class="input form-control" id="first_name_up" name="firstName" value="${userInfo.firstName}" required/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="frm_name" class="col-sm-4 control-label">Last Name</label>
+                        <label for="first_name_up_1" class="col-sm-4 control-label">Last Name</label>
 
                         <div class="col-sm-8">
-                            <input type="text" class="input form-control" id="last_name_up" value="${userInfo.lastName}" name="lastName" required/>
+                            <input type="text" class="input form-control" id="first_name_up_1" value="${userInfo.lastName}" name="lastName" required/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="emailtk" class="col-sm-4 control-label">Username</label>
 
                         <div class="col-sm-8">
-                            <input type="text" class="input form-control" id="username_up"  value="${userInfo.username}" required/>
+                            <input type="text" class="input form-control" id="emailtk" name="username" value="${userInfo.username}" required/>
                         </div>
                     </div>
 
@@ -217,7 +216,7 @@
                         <label for="pass_tk" class="col-sm-4 control-label">Password</label>
 
                         <div class="col-sm-8">
-                            <input type="password" class="input form-control" id="pass_tk"/>
+                            <input type="password" class="input form-control" name="password" id="pass_tk"/>
                         </div>
                     </div>
 
@@ -225,7 +224,7 @@
                         <label for="repass_tk" class="col-sm-4 control-label">Re-password</label>
 
                         <div class="col-sm-8">
-                            <input type="password" class="input form-control" id="repass_tk" />
+                            <input type="password" class="input form-control" name="repassword" id="repass_tk" />
                         </div>
                     </div>
 
@@ -233,14 +232,14 @@
                         <label for="card_number_up" class="col-sm-4 control-label">Identify Card Number</label>
 
                         <div class="col-sm-8">
-                            <input type="text" class="input form-control" id="card_number_up" value="${userInfo.identityCardNumber}" required/>
+                            <input type="text" class="input form-control" id="card_number_up"  name="identityCardNumber" value="${userInfo.identityCardNumber}" required/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="phone_number_up" class="col-sm-4 control-label">Phone Number</label>
 
                         <div class="col-sm-8">
-                            <input type="text" class="input form-control" id="phone_number_up" value="${userInfo.phoneNumber}" required/>
+                            <input type="text" class="input form-control" id="phone_number_up" name="phoneNumber" value="${userInfo.phoneNumber}" required/>
                         </div>
                     </div>
 
@@ -248,7 +247,7 @@
                         <label for="date_of_birth_up" class="col-sm-4 control-label">Birth day</label>
 
                         <div class="col-sm-8">
-                            <input type="date" class="input form-control" id="date_of_birth_up" value="<fmt:formatDate value="${userInfo.dateOfBirth}" pattern="yyyy-MM-dd" />" required />
+                            <input type="date" class="input form-control" id="date_of_birth_up" name="dateOfBirth" value="<fmt:formatDate value="${userInfo.dateOfBirth}" pattern="yyyy-MM-dd" />" required />
                         </div>
                     </div>
 
@@ -256,7 +255,7 @@
                         <label for="gender_tk" class="col-sm-4 control-label">Gender</label>
 
                         <div class="col-sm-8">
-                            <select class="input form-control" name="gioitinh" id="gender_tk"
+                            <select class="input form-control" name="gender" id="gender_tk"
                                 <option value="Female"  ${userInfo.gender == 'Female' ? 'selected' : ''}>Female</option>
                                 <option value="Male"  ${userInfo.gender == 'Female' ? 'selected' : ''}>Male</option>
                             </select>
@@ -266,19 +265,27 @@
                         <label for="address_up" class="col-sm-4 control-label">Address</label>
 
                         <div class="col-sm-8">
-                            <input type="text" class="input form-control" id="address_up" value="${userInfo.address}" required/>
+                            <input type="text" class="input form-control" id="address_up" name="address" value="${userInfo.address}" required/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="ward_tk" class="col-sm-4 control-label">Ward</label>
+                        <label for="wardId" class="col-sm-4 control-label">Ward</label>
 
                         <div class="col-sm-8">
-                            <select class="input form-control" name="gioitinh" id="ward_tk">
-                                <option value="An Khe">An Khe</option>
-                                <option value="Hoa Khe">Hoa Khe</option>
+                                <select class="form-control" name="wardId" id="wardId" required>
+                                    <c:forEach items="${wardsList}" var="ward">
+                                        <c:choose>
+                                            <c:when test="${ward.wardsId == userInfo.wards.wardsId}">
+                                                <option selected value="${ward.wardsId}">${ward.wardName}</option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <option value="${ward.wardsId}">${ward.wardName}</option>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
                             </select>
-                        </div>
+                    </div>
                     </div>
 
 
@@ -286,7 +293,7 @@
                         <div class="col-sm-4">
                         </div>
                         <div class="col-sm-8">
-                            <button class="button" type="submit">Update</button>
+                            <input class="button" type="submit" value="UPDATE"/>
                             <button class="button" onclick="return handleLogout();"  type="button">Logout</button>
                         </div>
                     </div>
