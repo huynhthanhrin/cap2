@@ -5,6 +5,7 @@ import com.capstone2.dichomuadich.domain.Role;
 import com.capstone2.dichomuadich.domain.Store;
 import com.capstone2.dichomuadich.domain.User;
 import com.capstone2.dichomuadich.domain.Wards;
+import com.capstone2.dichomuadich.models.Search;
 import com.capstone2.dichomuadich.services.*;
 import com.capstone2.dichomuadich.services.ComboService;
 import com.capstone2.dichomuadich.services.RoleService;
@@ -15,9 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -80,4 +79,16 @@ public class HomePublicController {
         }
         return "redirect:/index";
     }
+
+    @GetMapping("/search/{keySearch}")
+    public String search(@PathVariable String keySearch,Model model)
+    {
+        List<Items> itemsList = productService.search(keySearch);
+        System.out.println(itemsList);
+        model.addAttribute("itemsList", itemsList);
+        model.addAttribute("keyWord", keySearch);
+        return "public.search";
+    }
+
+
 }

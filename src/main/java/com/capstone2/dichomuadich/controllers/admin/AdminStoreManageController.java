@@ -2,6 +2,7 @@ package com.capstone2.dichomuadich.controllers.admin;
 
 import com.capstone2.dichomuadich.constant.CommonConstants;
 import com.capstone2.dichomuadich.domain.Store;
+import com.capstone2.dichomuadich.domain.User;
 import com.capstone2.dichomuadich.domain.Wards;
 import com.capstone2.dichomuadich.services.StoreService;
 import com.capstone2.dichomuadich.services.UserService;
@@ -148,9 +149,14 @@ public class AdminStoreManageController {
     }
 
     @PostMapping("/del/{storeId}")
-    public String delete(HttpServletRequest request, @PathVariable int storeId, RedirectAttributes rd)
-    {
+    public String delete(HttpServletRequest request, @PathVariable int storeId, RedirectAttributes rd) {
+        List<User> userList = userService.findUsersByStore(storeService.findStoreByStoreId(storeId));
         storeService.deactiveStore(storeId);
+        //deactive account user of store was deleted
+        for (User user : userList)
+        {
+            userService.updateStatus(0, user.getUserId());
+        }
 
         rd.addFlashAttribute(CommonConstants.MSG,
                 messageSource.getMessage("del_success", null, Locale.getDefault()));

@@ -120,4 +120,13 @@
                        value="/WEB-INF/templates/public/views/order.jsp" />
     </definition>
 
+    <definition name="public.search" extends="templates.public.product">
+        <put-attribute name="body"
+                       value="/WEB-INF/templates/public/views/search.jsp" />
+    </definition>
+
+    <definition name="public.chat" extends="templates.public.product">
+        <put-attribute name="body"
+                       value="/WEB-INF/templates/public/views/chat.jsp" />
+    </definition>
 </tiles-definitions>

@@ -30,6 +30,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Transactional
     void deleteUserByStoreID(int storeId);
 
+    List<User> findUsersByStore(Store store);
+
     User findUserByUserId(Integer id);
 
     User findUserByUsernameAndPassword(String username, String password);
@@ -38,5 +40,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Transactional
     void updateToken(String token, String username);
+
+    @Query(value = "UPDATE user SET status = ? WHERE userId = ?", nativeQuery = true)
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Transactional
+    void updateStatus(int status, int userId);
 
 }

@@ -38,4 +38,7 @@ public interface ItemsRepository extends PagingAndSortingRepository<Items, Integ
     @Query(value = "update item set quantity = quantity - ? where itemsId = ?", nativeQuery = true)
     @Transactional
     int updateQuantity(int count, int itemId);
+
+    @Query(value = "SELECT a.* FROM item as a , category as b WHERE a.catId = b.catId and a.itemName LIKE %?1% or b.catName LIKE %?1%", nativeQuery = true)
+    List<Items> search(String keyword);
 }

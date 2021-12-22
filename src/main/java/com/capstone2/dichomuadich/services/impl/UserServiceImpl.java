@@ -102,4 +102,17 @@ public class UserServiceImpl implements UserService {
     public void delUsersByStore(int storeId) {
         userRepository.deleteUserByStoreID(storeId);
     }
+
+    @Override
+    public List<User> findUsersByStore(Store store) {
+        return userRepository.findUsersByStore(store);
+    }
+
+    @Override
+    public void updateStatus(int status, int userId) {
+        userRepository.updateStatus(status, userId);
+    }
+
+
+
 }

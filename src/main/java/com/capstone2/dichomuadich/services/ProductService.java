@@ -33,4 +33,6 @@ public interface ProductService {
 
     int updateQuantity(int count, int itemId);
 
+    List<Items> search(String keyword);
+
 }

@@ -13,10 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,12 +38,12 @@ public class ComboListController {
     {
         Store store = storeService.findStoreByStoreId(sid);
         List<Category> categoryList = categoryService.getListCategoryByStore(store);
-        Pageable pageable = PageRequest.of(page.orElse(0), 2);
+        Pageable pageable = PageRequest.of(page.orElse(0), 10);
         List<Combo> comboList = comboService.getListComboByStore(store);
         Page<Combo> combos = comboService.getListComboByStore(store,pageable);
         int numberPage = 0;
-        numberPage = comboList.size() / 2;
-        if (comboList.size() % 2 != 0){
+        numberPage = comboList.size() / 10;
+        if (comboList.size() % 10 != 0){
             numberPage = numberPage +1;
         }
         List<Combo> comboSize = comboList.stream().limit(numberPage).collect(Collectors.toList());

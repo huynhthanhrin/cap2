@@ -50,6 +50,7 @@ public class ComboServiceImpl implements ComboService{
 
     @Override
     public Combo getComboByStoreAndName(String name, Store store) {
-        return comboRepository.findComboByComboNameAndStore(name,store);
+        return null;
     }
+
 }

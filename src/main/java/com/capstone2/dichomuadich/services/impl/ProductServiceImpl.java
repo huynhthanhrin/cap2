@@ -74,4 +74,9 @@ public class ProductServiceImpl implements ProductService {
     public int updateQuantity(int count, int itemId) {
         return itemsRepository.updateQuantity(count, itemId);
     }
+
+    @Override
+    public List<Items> search(String keyword) {
+        return itemsRepository.search(keyword);
+    }
 }

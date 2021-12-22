@@ -55,14 +55,14 @@ public class ProductListController {
     {
         Store store = storeService.findStoreByStoreId(sid);
         List<Category> categoryList = categoryService.getListCategoryByStore(store);
-        Pageable pageable = PageRequest.of(page.orElse(0), 2);
+        Pageable pageable = PageRequest.of(page.orElse(0), 10);
         Page<Items>  itemsList = cid == null ? productService.getListItems(store,pageable) : productService.getItemsByStoreAndCategory(store, categoryService.getCategoryById(cid),pageable);
         List<Items> itemsListAll = productService.getListItemsByStore(store);
 
         int numberPage = 0;
         if(cid == null){
-            numberPage = itemsListAll.size() / 2;
-            if (itemsListAll.size() % 2 != 0){
+            numberPage = itemsListAll.size() / 10;
+            if (itemsListAll.size() % 10 != 0){
                 numberPage = numberPage +1;
             }
         } else {

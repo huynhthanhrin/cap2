@@ -8,20 +8,28 @@
         <div class="col-xs-4 col-sm-12 col-md-5 col-lg-4 header-search-box">
             <form class="form-inline" action="${pageContext.request.contextPath}/search" method="post">
                 <div class="form-group input-serach">
-                    <input type="text" placeholder="Search ...">
+                    <input id="keySearch" type="text" placeholder="Search ...">
                 </div>
-                <button type="submit" class="pull-right btn-search"><i class="fa fa-search" ></i></button>
+                <button type="submit" class="pull-right btn-search"><i onclick="search()" class="fa fa-search" ></i></button>
             </form>
         </div>
+        <script>
+            function search()
+            {
+                var keySearch = document.getElementById("keySearch").value;
+                var url = "/search/"+keySearch;
+                location.href=url;
+            }
+        </script>
 
         <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 group-button-header">
 
 
-            <div class="btn-cart" id="cart-block">
+            <div style="width: 250px;text-align: center" class="btn-cart" id="cart-block">
 
                 <a title="SignIn" href="" id="loginButton" data-toggle="modal" data-target="#myModal">Log In</a>
                 <c:if test="${userInfo != null}">
-                    <span style="margin-top: 20px; margin-left: -40px; color: darkseagreen; font-weight: bold;">${userInfo != null ? userInfo.getFullName() : ""}</span>
+                    <span style="margin-top: 20px; width: 200px; color: darkseagreen; font-weight: bold;">${userInfo != null ? userInfo.getFullName() : ""}</span>
                 </c:if>
             </div>
         </div>
@@ -93,4 +101,5 @@
             <div class="shopping-cart-box-ontop-content"></div>
         </div>
     </div>
+
 </div>

@@ -28,4 +28,8 @@ public interface UserService {
 
     void delUsersByStore(int storeId);
 
+    List<User> findUsersByStore(Store store);
+
+    void updateStatus(int status, int userId);
+
 }
